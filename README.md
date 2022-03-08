@@ -26,6 +26,16 @@ Agora, com mais de 20 anos de de desenvolvimento Postgresql se consolidou como u
 O Redis é um armazenamento de estrutura de dados de chave-valor de código aberto e na memória. O Redis oferece um conjunto de estruturas versáteis de dados na memória que permite a fácil criação de várias aplicações personalizadas. Os principais casos de uso do Redis incluem cache, gerenciamento de sessões, PUB/SUB e classificações.
 Por conta da sua velocidade e facilidade de uso, o Redis é uma escolha em alta demanda para aplicações web e móveis, como também de jogos, tecnologia de anúncios e IoT, que exigem o melhor desempenho do mercado. 
 
+## Dependências 
+Para esse projeto é necessário Python 3.9 ou superior e o gerenciador de pacotes PIP.
+
+### Instalação
+Instalação dos frameworks necessários
+
+    pip3 install -r requirements.txt
+
+
+
 
 
 Os dados são persistidos em um container com Postgresql. Também foi utilizando Redis para fazer cache.
