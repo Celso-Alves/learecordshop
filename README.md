@@ -29,11 +29,85 @@ Por conta da sua velocidade e facilidade de uso, o Redis é uma escolha em alta 
 ## Dependências 
 Para esse projeto é necessário Python 3.9 ou superior e o gerenciador de pacotes PIP.
 
+
+## Docker
+
+Comando para iniciar
+
+    docker-compose up -d --build
+
+Conteudo do docker-compose.yml
+
+    version: '3.1'
+    
+    services:
+        web:
+            build: .
+            command: python run.py
+            ports:
+                - 5000:5000
+            environment:
+                - FLASK_APP=run.py
+            env_file:
+                - env.list
+        db:
+            image: postgres:13-alpine
+            restart: always
+            volumes:
+                - postgres_data:/var/lib/postgresql/data/
+            environment:
+                - POSTGRES_USER=lea_shop
+                - POSTGRES_PASSWORD=lea_shop2022
+                - POSTGRES_DB=learecordshop_db
+        redis:
+            image: redis
+            container_name: redis-container
+            ports:
+                - "6379:6379"
+    volumes:
+      postgres_data:
+
+
+Após os containers serem iniciados, o seguinte endereço da API ficará disponivel [http://localhost:5000] ***
+
+
+### API
+Abaixo estão uma lista dos endpoints com seus parametros, é necessário que a aplicação esteja rodando para que os endpoints funcionem.
+
+#### Clientes
+    
+|Endpoint | Método | Descrição|Paramêtros|
+|---------|--------|----------|-------|
+|http://localhost:5000/api/clientes/| GET | Retorna listagem de cliente(s)| /api/clientes/\<ID\> Identificação única do Cliente|
+
+Exemplo de saída
+    
+        {
+        "3": {
+            "nme_disco": "Time of the Oath",
+            "artista": "Helloween",
+            "estilo": "Metal",
+            "ano_lancto": 1996,
+            "quantidade": 9450
+        }
+    }
+
+
+
+
+
 ### Instalação
 Instalação dos frameworks necessários
 
-    pip3 install -r requirements.txt
+    pip install -r requirements.txt
+    
+### TDD - Testes integração
+Testes são um dos mais fortes pilares de qualquer software antes, durante e depois do desenvolvimento.Especialmente nos caso de microservicos web onde a aplicação
+vai lidar com um grande volume de tráfego
+    
+    python app_tests.py -v
 
+### Configuração
 
 
 
