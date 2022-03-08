@@ -1,8 +1,6 @@
 import json
-from functools import wraps
 
-from flask import request, Blueprint, render_template, jsonify, flash, \
-    redirect, url_for, abort
+from flask import request, Blueprint,  abort
 from flask_restful import Resource, reqparse
 
 from sqlalchemy.orm.util import join
@@ -12,8 +10,6 @@ from my_app import db,  api, cache
 from my_app.catalog.models import Clientes, Discos, Pedidos
 from datetime import datetime
 from flask_restful import inputs
-
-
 
 
 
@@ -67,7 +63,6 @@ class DiscoApi(Resource):
         else:
             discos = [Discos.query.get(id_disco)]
 
-#        print(len(request.args))
 
         if any(x is None for x in discos):
             #return json.dumps({'resposta': 'Erro Disco nao localizado pelo ID informado'})
@@ -153,9 +148,6 @@ class DiscoApi(Resource):
         discos = Discos.query.filter_by(id_disco=id_disco).first()
         if not discos:
             abort(404,'Disco nao localizado pelo ID informado')
-            #return json.dumps({'resposta': 'Erro Disco nao localizado pelo ID informado'})
-        #if any(x is None for x in discos):
-        #    return json.dumps({'resposta': 'Erro Disco nao localizado pelo ID informado'})
         
         if args['nme_disco']:
             discos.nme_disco = args['nme_disco']
@@ -222,20 +214,10 @@ class ClientesApi(Resource):
             clientes = Clientes.query.paginate(page, 10).items
         else:
             clientes = [Clientes.query.get(id_cliente)]
-        #person=Person.query(name="name").first() 
-        #app.logger.warning(discos.nme_disco)
-        #print (discos)
+
         if any(x is None for x in clientes):
             return abort(404,'Cliente nao localizado pelo ID informado')
-            #abort(404)
-            #print("tem none")        
-#        if discos.count==-1:
-#            abort(404)
-#            
-        #if not clientes:
-        #    abort(404)
-        
-        
+
         res = {}
         for cliente in clientes:
                 res[cliente.id_cliente] = {
@@ -278,12 +260,10 @@ class ClientesApi(Resource):
     
     def patch(self,id_cliente):
         args = parser_cliente.parse_args()
-        #discos = [Discos.query.get(id_disco)]
+
         cliente = Clientes.query.filter_by(id_cliente=id_cliente).first()
         if not cliente:
             return json.dumps({'resposta': 'Erro Cliente nao localizado pelo ID informado'})
-        #if any(x is None for x in discos):
-        #    return json.dumps({'resposta': 'Erro Disco nao localizado pelo ID informado'})
         
         if args['nme_cliente']:
             cliente.nme_cliente = args['nme_cliente']
@@ -304,7 +284,7 @@ class ClientesApi(Resource):
             cliente.nr_documento = args['nr_documento']
 
 
-        #discos.update
+
         db.session.commit()
         res = {}
         res[cliente.id_cliente] = {
@@ -419,7 +399,7 @@ class PedidosApi(Resource):
         if not cliente:
             return json.dumps({'resposta': 'Erro Cliente nao localizado pelo ID informado ou não ativo'})
         
-        #print('Cliente encontrado')
+
         if args['id_disco']:
             id_disco = args['id_disco']
         
@@ -489,10 +469,4 @@ api.add_resource(
     '/api/pedidos/<int:id_pedido>',
     '/api/pedidos/<int:id_pedido>/<int:page>'
 )    
-
-
-
-
-
-
 
