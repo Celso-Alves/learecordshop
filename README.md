@@ -279,13 +279,9 @@ Codigos de retorno HTTP Status
 |404               |Not Found|Disco nao localizado pelo ID informado|
 
 #### Mensagens de erro Código 412
-<<<<<<< HEAD
-->Erro Cliente nao localizado pelo ID informado ou não ativo
-->Infelismente esse disco acabou :( , mas não se preocupe, vamos incluir seu nome na lista de espera,assim que estiver disponivel te informamos por e-mail
-=======
 1. Erro Cliente nao localizado pelo ID informado ou não ativo
 2. Infelismente esse disco acabou :( , mas não se preocupe, vamos incluir seu nome na lista de espera,assim que estiver disponivel te informamos por e-mail
->>>>>>> f12f75112707226846164867bc0558f8284dedd8
+
 
 
 #### UPDATE
@@ -313,10 +309,8 @@ Exemplo:
 
 Saida:
 
-<<<<<<< HEAD
-=======
 ```
->>>>>>> f12f75112707226846164867bc0558f8284dedd8
+
    {
    "1": {
         "id_disco": 3,
@@ -327,12 +321,9 @@ Saida:
         "nme_cliente": "jose"
         }
     }
-<<<<<<< HEAD
 
-
-=======
 ```
->>>>>>> f12f75112707226846164867bc0558f8284dedd8
+
 
 ### Instalação
 Instalação dos frameworks necessários
