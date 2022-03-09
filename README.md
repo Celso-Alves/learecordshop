@@ -71,14 +71,16 @@ Conteudo do docker-compose.yml
 Após os containers serem iniciados, o seguinte endereço da API ficará disponivel [http://localhost:5000] ***
 
 
-### API
+#### API
 Abaixo estão uma lista dos endpoints com seus parametros, é necessário que a aplicação esteja rodando para que os endpoints funcionem.
 
-#### Clientes
+### DISCOS  - Operações de Create, Read, Update, and Delete (CRUD)
     
+
+## READ 
 |Endpoint | Método | Descrição|Paramêtros|
 |---------|--------|----------|-------|
-|http://localhost:5000/api/clientes/| GET | Retorna listagem de cliente(s)| /api/clientes/\<ID\> Identificação única do Cliente|
+|`http://localhost:5000/api/discos`| GET | Retorna listagem de disco(s)| /api/discos/\<ID\> Identificação única do disco|
 
 Exemplo de saída
     
@@ -91,9 +93,57 @@ Exemplo de saída
             "quantidade": 9450
         }
     }
+## CREATE
 
+|Endpoint | Método | Descrição|Paramêtros|
+|---------|--------|----------|-------|
+|`http://localhost:5000/api/discos`| POST | Inclui um novo discos | Vide Body abaixo|
 
+Exemplo do Body
 
+        {
+         "nme_disco": 'Time of the Oath', 
+         "artista": "Helloween",
+         "estilo": "Metal",
+        "ano_lancto": 1996,
+         "quantidade": 100
+        }
+    
+
+## READ - SEARCH
+
+|Endpoint | Método | Descrição|Paramêtros|
+|---------|--------|----------|-------|
+|`http://localhost:5000/api/discos?`| GET | Pesquisa por query| /api/discos?\<campo\>=\<valor\>&\<campo\>=\<valor\>|
+
+Exemplo:
+
+    http://localhost:5000/api/discos?artista=Helloween
+
+Saida:
+
+    {
+    "3": {
+        "nme_disco": "Time of the Oath",
+        "artista": "Helloween",
+        "estilo": "Metal",
+        "ano_lancto": 1996,
+        "quantidade": 9450
+         }
+    }
+
+## UPDATE
+
+|Endpoint | Método | Descrição|Paramêtros|
+|---------|--------|----------|-------|
+|`http://localhost:5000/api/discos`| PATCH | Altera um ou mais campos informados| /api/discos/\<ID\>|
+
+ Codigos de retorno HTTP Status
+ 
+|Código de Retorno |Status| Definição |
+|------------------|------|-----------|
+|400               |OK    |Sucesso         |
+|404               |Not Found|Disco nao localizado pelo ID informado|
 
 
 ### Instalação
