@@ -6,8 +6,8 @@ class BaseConfig(object):
     DEBUG = True
     TESTING = False
     NEW_CONFIG_VARIABLE = 'my value'
-    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:mateme@localhost/learecordshop'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    
 
 
 class Docker(BaseConfig):
@@ -40,3 +40,6 @@ class DevelopmentConfig(BaseConfig):
     SECRET_KEY = 'fdcd7fec3e1f2d86fe0732c0f6392c61ff4f6192a51625b09989360e5779816d'
     CACHE_TYPE = os.getenv('CACHE_TYPE','simple')
     CACHE_DEFAULT_TIMEOUT = os.getenv('CACHE_DEFAULT_TIMEOUT',500)
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:mateme@localhost/learecordshop'
+    FLASK_ENV = os.getenv('FLASK_ENV','development')
+    

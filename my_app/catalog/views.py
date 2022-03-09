@@ -31,10 +31,7 @@ parser_disco.add_argument('estilo', type=str)
 parser_disco.add_argument('ano_lancto', type=int)
 parser_disco.add_argument('quantidade', type=int)
 
-    
-    
-
-
+ 
 
 class DiscoApi(Resource):
     @cache.cached(timeout=30, query_string=True)
@@ -48,7 +45,7 @@ class DiscoApi(Resource):
         
         #Sem id_disco, sem parametros de busca
         if not id_disco and len(request.args)==0:
-            print('Trazer tudo')
+
             discos = Discos.query.paginate(page, 10).items
         elif len(request.args)!=0 and not id_disco:
             discos = Discos.query
@@ -65,7 +62,6 @@ class DiscoApi(Resource):
 
 
         if any(x is None for x in discos):
-            #return json.dumps({'resposta': 'Erro Disco nao localizado pelo ID informado'})
             abort(404,'Disco nao localizado pelo ID informado')
 
        
@@ -370,7 +366,7 @@ class PedidosApi(Resource):
 
         if any(x is None for x in pedidos):
             abort(404,'Pedido nao localizado pelo ID informado')
-            #return json.dumps({'resposta': 'Erro Pedido nao localizado pelo ID informado'})
+         
         
         
         res = {}
