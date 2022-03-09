@@ -77,7 +77,7 @@ Abaixo estão uma lista dos endpoints com seus parametros, é necessário que a 
 ### DISCOS  - Operações de Create, Read, Update, and Delete (CRUD)
     
 
-## READ 
+#### READ 
 |Endpoint | Método | Descrição|Paramêtros|
 |---------|--------|----------|-------|
 |`http://localhost:5000/api/discos`| GET | Retorna listagem de disco(s)| /api/discos/\<ID\> Identificação única do disco|
@@ -86,14 +86,14 @@ Exemplo de saída
     
         {
         "3": {
-            "nme_disco": "Time of the Oath",
-            "artista": "Helloween",
-            "estilo": "Metal",
-            "ano_lancto": 1996,
-            "quantidade": 9450
+        "nme_disco": "We are Reactive",
+        "artista": "Hohpe",
+        "estilo": "Indie",
+        "ano_lancto": 2022,
+        "quantidade": 500
         }
     }
-## CREATE
+#### CREATE
 
 |Endpoint | Método | Descrição|Paramêtros|
 |---------|--------|----------|-------|
@@ -110,7 +110,7 @@ Exemplo do Body
         }
     
 
-## READ - SEARCH
+#### READ - SEARCH
 
 |Endpoint | Método | Descrição|Paramêtros|
 |---------|--------|----------|-------|
@@ -132,7 +132,7 @@ Saida:
          }
     }
 
-## UPDATE
+#### UPDATE
 
 |Endpoint | Método | Descrição|Paramêtros|
 |---------|--------|----------|-------|
@@ -145,7 +145,7 @@ Saida:
 |400               |OK    |Sucesso         |
 |404               |Not Found|Disco nao localizado pelo ID informado|
 
-## DELETE
+#### DELETE
 
 |Endpoint | Método | Descrição|Paramêtros|
 |---------|--------|----------|-------|
@@ -163,7 +163,7 @@ Saida:
 ### CLIENTES  - Operações de Read, Update, and Delete 
     
 
-## READ 
+#### READ 
 |Endpoint | Método | Descrição|Paramêtros|
 |---------|--------|----------|-------|
 |`http://localhost:5000/api/clientes`| GET | Retorna listagem de clientes(s)| /api/clientes/\<ID\> Identificação única do disco|
@@ -181,7 +181,7 @@ Exemplo de saída
         }
     }
 
-## CREATE
+#### CREATE
 
 |Endpoint | Método | Descrição|Paramêtros|
 |---------|--------|----------|-------|
@@ -198,7 +198,7 @@ Exemplo do Body
         "nr_documento": "1234567890-123"
         }
 
-## UPDATE
+#### UPDATE
 
 |Endpoint | Método | Descrição|Paramêtros|
 |---------|--------|----------|-------|
@@ -211,7 +211,7 @@ Exemplo do Body
 |400               |OK    |Sucesso         |
 |404               |Not Found|cliente nao localizado pelo ID informado|
 
-## DELETE
+#### DELETE
 
 |Endpoint | Método | Descrição|Paramêtros|
 |---------|--------|----------|-------|
@@ -229,7 +229,7 @@ Exemplo do Body
 ### PEDIDOS  - Operações de Create, Read, Update, and Delete 
     
 
-## READ 
+#### READ 
 |Endpoint | Método | Descrição|Paramêtros|
 |---------|--------|----------|-------|
 |`http://localhost:5000/api/pedidos`| GET | Retorna listagem de pedidos(s)| /api/pedidos/\<ID\> Identificação única do pedido|
@@ -246,7 +246,7 @@ Exemplo de saída
         "nme_cliente": "jose"
     }
 
-## CREATE
+#### CREATE
 
 |Endpoint | Método | Descrição|Paramêtros|
 |---------|--------|----------|-------|
@@ -280,7 +280,7 @@ Codigos de retorno HTTP Status
 ->Infelismente esse disco acabou :( , mas não se preocupe, vamos incluir seu nome na lista de espera,assim que estiver disponivel te informamos por e-mail
 
 
-## UPDATE
+#### UPDATE
 
 |Endpoint | Método | Descrição|Paramêtros|
 |---------|--------|----------|-------|
@@ -293,7 +293,7 @@ Codigos de retorno HTTP Status
 |400               |OK    |Sucesso         |
 |404               |Not Found|pedido nao localizado pelo ID informado|
 
-## READ - SEARCH
+#### READ - SEARCH
 
 |Endpoint | Método | Descrição|Paramêtros|
 |---------|--------|----------|-------|
