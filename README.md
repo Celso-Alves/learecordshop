@@ -145,6 +145,178 @@ Saida:
 |400               |OK    |Sucesso         |
 |404               |Not Found|Disco nao localizado pelo ID informado|
 
+## DELETE
+
+|Endpoint | Método | Descrição|Paramêtros|
+|---------|--------|----------|-------|
+|`http://localhost:5000/api/discos`| DELETE | Apaga o disco atráves do ID informado| /api/discos/\<ID\>|
+
+ Codigos de retorno HTTP Status
+ 
+|Código de Retorno |Status| Definição |
+|------------------|------|-----------|
+|400               |OK    |Sucesso         |
+|404               |Not Found|Disco nao localizado pelo ID informado|
+
+
+------------------------------------------------------------------------
+### CLIENTES  - Operações de Read, Update, and Delete 
+    
+
+## READ 
+|Endpoint | Método | Descrição|Paramêtros|
+|---------|--------|----------|-------|
+|`http://localhost:5000/api/clientes`| GET | Retorna listagem de clientes(s)| /api/clientes/\<ID\> Identificação única do disco|
+
+Exemplo de saída
+    
+    {
+        "1": {
+        "nme_cliente": "joao",
+        "email": "joao@joao.com",
+        "telefone": "1199999999",
+        "dt_nasc": "1981-04-24T00:00:00",
+        "ativo": false,
+        "nr_documento": "1234567890-123"
+        }
+    }
+
+## CREATE
+
+|Endpoint | Método | Descrição|Paramêtros|
+|---------|--------|----------|-------|
+|`http://localhost:5000/api/clientes`| POST | Inclui um novo clientes | Vide Body abaixo|
+
+Exemplo do Body
+
+        {
+        "nme_cliente": "jose",
+        "email": "jose@jose.com",
+        "telefone": "1199999999",
+        "dt_nasc": "1981-04-24T00:00:00",
+        "ativo": false,
+        "nr_documento": "1234567890-123"
+        }
+
+## UPDATE
+
+|Endpoint | Método | Descrição|Paramêtros|
+|---------|--------|----------|-------|
+|`http://localhost:5000/api/clientes`| PATCH | Altera um ou mais campos informados| /api/clientes/\<ID\>|
+
+ Codigos de retorno HTTP Status
+ 
+|Código de Retorno |Status| Definição |
+|------------------|------|-----------|
+|400               |OK    |Sucesso         |
+|404               |Not Found|cliente nao localizado pelo ID informado|
+
+## DELETE
+
+|Endpoint | Método | Descrição|Paramêtros|
+|---------|--------|----------|-------|
+|`http://localhost:5000/api/clientes`| DELETE | **'INATIVA'** o cliente atráves do ID informado| /api/clientes/\<ID\>|
+
+ Codigos de retorno HTTP Status
+ 
+|Código de Retorno |Status| Definição |
+|------------------|------|-----------|
+|400               |OK    |Cliente inativado com sucesso         |
+|404               |Not Found|Cliente nao localizado pelo ID informado|
+
+--------------------------------------------------------------------
+
+### PEDIDOS  - Operações de Create, Read, Update, and Delete 
+    
+
+## READ 
+|Endpoint | Método | Descrição|Paramêtros|
+|---------|--------|----------|-------|
+|`http://localhost:5000/api/pedidos`| GET | Retorna listagem de pedidos(s)| /api/pedidos/\<ID\> Identificação única do pedido|
+
+Exemplo de saída
+    
+    {
+    "1": {
+        "id_disco": 3,
+        "quantidade": 10,
+        "id_cliente": 1,
+        "dt_pedido": "2022-03-01T10:54:32",
+        "nme_disco": "Time of the Oath",
+        "nme_cliente": "jose"
+    }
+
+## CREATE
+
+|Endpoint | Método | Descrição|Paramêtros|
+|---------|--------|----------|-------|
+|`http://localhost:5000/api/pedidos`| POST | Inclui um novo Pedido | Vide Body abaixo|
+
+Exemplo do Body
+
+        {
+        "nme_cliente": "jose",
+        "email": "jose@jose.com",
+        "telefone": "1199999999",
+        "dt_nasc": "1981-04-24T00:00:00",
+        "ativo": false,
+        "nr_documento": "1234567890-123"
+        }
+
+Na postagem de um pedido, é necessário saber se há estoque disponivel para o mesmo. No caso, quando não houver estoque daquele produto,
+a aplicação retorna uma mensagem e inclui o produto numa lista de espera, dessa forma o forma o cliente é avisado por e-mail quando a loja
+repor o estoque
+
+Codigos de retorno HTTP Status
+ 
+|Código de Retorno |Status| Definição |
+|------------------|------|-----------|
+|400               |OK    |Pedido incluido com sucesso         |
+|412               | Precondition Failed| `Vide Abaixo`|
+|404               |Not Found|Disco nao localizado pelo ID informado|
+
+#### Mensagens de erro Código 412
+->Erro Cliente nao localizado pelo ID informado ou não ativo
+->Infelismente esse disco acabou :( , mas não se preocupe, vamos incluir seu nome na lista de espera,assim que estiver disponivel te informamos por e-mail
+
+
+## UPDATE
+
+|Endpoint | Método | Descrição|Paramêtros|
+|---------|--------|----------|-------|
+|`http://localhost:5000/api/pedidos`| PATCH | Altera um ou mais campos informados| /api/pedidos/\<ID\>|
+
+ Codigos de retorno HTTP Status
+ 
+|Código de Retorno |Status| Definição |
+|------------------|------|-----------|
+|400               |OK    |Sucesso         |
+|404               |Not Found|pedido nao localizado pelo ID informado|
+
+## READ - SEARCH
+
+|Endpoint | Método | Descrição|Paramêtros|
+|---------|--------|----------|-------|
+|`http://localhost:5000/api/pedidos?`| GET | Pesquisa por query| /api/pedidos?\<campo\>=\<valor\>&\<campo\>=\<valor\>|
+
+Exemplo:
+
+    http://localhost:5000/api/pedidos?nme_cliente=jose&dt_ini=28/02/2022&dt_fim=03/03/2022
+
+Saida:
+
+   {
+   "1": {
+        "id_disco": 3,
+        "quantidade": 10,
+        "id_cliente": 1,
+        "dt_pedido": "2022-03-01T10:54:32",
+        "nme_disco": "Time of the Oath",
+        "nme_cliente": "jose"
+        }
+    }
+
+
 
 ### Instalação
 Instalação dos frameworks necessários
@@ -155,27 +327,5 @@ Instalação dos frameworks necessários
 Testes são um dos mais fortes pilares de qualquer software antes, durante e depois do desenvolvimento.Especialmente nos caso de microservicos web onde a aplicação
 vai lidar com um grande volume de tráfego
     
-    python app_tests.py -v
+   python app_tests.py -v
 
-### Configuração
-
-
-
-
-Os dados são persistidos em um container com Postgresql. Também foi utilizando Redis para fazer cache.
-Este projeto foi escrito usando o Visual Studio Code 1.65
-
-<h2>Run locally with docker</h2>
-
-> Status do Projeto: Concluido :heavy_check_mark:
-## Linguagens e libs utilizadas :books:
-
-- [React PDF](https://react-pdf.org/): versão xx.xxx 
-
-### Participante: 
-|name|email|present|receiveCertificate|course|
-| -------- | -------- | -------- |-------- | -------- |
-|Chaiana Hermes|chaiana_hermes@yahoo.com.br|true|false|Bootcamp React|
-
-    sudo apt update
-    sudo apt install snapd
